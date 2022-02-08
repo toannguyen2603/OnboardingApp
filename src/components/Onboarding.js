@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Animated } from "react-native";
 import slides from "../common/slide";
 
 import OnboardingItem from "../constants/OnboardingItem";
+import Paginator from "../constants/Paginator";
 
 const Onboarding = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,6 +47,7 @@ const Onboarding = () => {
           ref={slidesRef}
         />
       </View>
+      <Paginator data={slides} scrollX={scrollX} />
     </View>
   );
 };
