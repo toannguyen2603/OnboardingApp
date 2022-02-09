@@ -1,9 +1,4 @@
-import {
-    View,
-    StyleSheet,
-    useWindowDimensions,
-    Animated,
-} from "react-native";
+import { View, StyleSheet, useWindowDimensions, Animated } from "react-native";
 import React from "react";
 
 function Paginator({ data, scrollX }) {
@@ -17,11 +12,7 @@ function Paginator({ data, scrollX }) {
             }}
         >
             {data.map((_, index) => {
-                const inputRange = [
-                    (index - 1) * width,
-                    index * width,
-                    (index + 1) * width,
-                ];
+                const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
                 const dotWidth = scrollX.interpolate({
                     inputRange,

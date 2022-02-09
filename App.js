@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import Onboarding from "./src/components/Onboarding";
+import HomePage from "./src/screens/HomePage";
 
 /* @@@@@@
 // TODO: highlight comment
@@ -10,7 +11,8 @@ import Onboarding from "./src/components/Onboarding";
 export default function App() {
     return (
         <View style={{ flex: 1 }}>
-            <Onboarding />
+            {/* <Onboarding /> */}
+            <HomePage />
         </View>
     );
 }

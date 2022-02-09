@@ -1,11 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    FlatList,
-    Animated,
-} from "react-native";
+import { View, Text, StyleSheet, FlatList, Animated } from "react-native";
 import slides from "../common/slide";
 
 import OnboardingItem from "../constants/OnboardingItem";
@@ -15,7 +9,7 @@ import NextButton from "./NextButton";
 const Onboarding = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Get position of list
+    // TODO: Get position of list
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
 
@@ -42,9 +36,7 @@ const Onboarding = () => {
             <View style={{ flex: 3 }}>
                 <FlatList
                     data={slides}
-                    renderItem={({ item }) => (
-                        <OnboardingItem item={item} />
-                    )}
+                    renderItem={({ item }) => <OnboardingItem item={item} />}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     pagingEnabled
@@ -73,12 +65,7 @@ const Onboarding = () => {
             <Paginator data={slides} scrollX={scrollX} />
 
             {/* TODO: button next onboard */}
-            <NextButton
-                scrollTo={scrollTo}
-                percentage={
-                    (currentIndex + 1) * (100 / slides.length)
-                }
-            />
+            <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / slides.length)} />
         </View>
     );
 };
