@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import Onboarding from "./src/components/Onboarding";
 
 export default function App() {
-  return (
-    <View style={{ flex: 1 }}>
-      <Onboarding />
-    </View>
-  );
+    return (
+        <View style={{ flex: 1 }}>
+            <Onboarding />
+        </View>
+    );
 }
