@@ -27,6 +27,16 @@ const Onboarding = () => {
         viewAreaCoveragePercentThreshold: 50,
     }).current;
 
+    const scrollTo = () => {
+        if (currentIndex < slides.length - 1) {
+            slidesRef.current.scrollToIndex({
+                index: currentIndex + 1,
+            });
+        } else {
+            console.log("Last item");
+        }
+    };
+
     return (
         <View style={styles.container}>
             <View style={{ flex: 3 }}>
@@ -36,7 +46,7 @@ const Onboarding = () => {
                         <OnboardingItem item={item} />
                     )}
                     horizontal
-                    showsHorizontalScrollIndicator
+                    showsHorizontalScrollIndicator={false}
                     pagingEnabled
                     bounces={false}
                     keyExtractor={(item) => item.id}
@@ -58,8 +68,17 @@ const Onboarding = () => {
                     ref={slidesRef}
                 />
             </View>
+
+            {/* TODO: Paginator */}
             <Paginator data={slides} scrollX={scrollX} />
-            <NextButton />
+
+            {/* TODO: button next onboard */}
+            <NextButton
+                scrollTo={scrollTo}
+                percentage={
+                    (currentIndex + 1) * (100 / slides.length)
+                }
+            />
         </View>
     );
 };

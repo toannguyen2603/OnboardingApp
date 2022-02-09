@@ -8,7 +8,7 @@ import {
 import Svg, { G, Circle } from "react-native-svg";
 import { AntDesign } from "@expo/vector-icons";
 
-const NextButton = () => {
+const NextButton = ({ percentage, scrollTo }) => {
     const size = 128;
     const strokeWidth = 2;
     const center = size / 2;
@@ -27,6 +27,31 @@ const NextButton = () => {
             useNativeDriver: true,
         }).start();
     };
+
+    useEffect(() => {
+        animation(percentage);
+    }, [percentage]);
+
+    useEffect(() => {
+        progressAnimation.addListener(
+            (value) => {
+                const strokeDashoffset =
+                    circumference -
+                    (circumference * value.value) / 100;
+
+                if (progressRef?.current) {
+                    progressRef.current.setNativeProps({
+                        strokeDashoffset,
+                    });
+                }
+            },
+            [percentage],
+        );
+        return () => {
+            progressAnimation.removeAllListeners();
+        };
+    }, []);
+
     return (
         <View style={styles.container}>
             <Svg width={size} height={size}>
@@ -47,14 +72,11 @@ const NextButton = () => {
                         r={radius}
                         strokeWidth={strokeWidth}
                         strokeDasharray={circumference}
-                        strokeDashoffset={
-                            circumference -
-                            (circumference * 60) / 100
-                        }
                     />
                 </G>
             </Svg>
             <TouchableOpacity
+                onPress={scrollTo}
                 style={styles.button}
                 activeOpacity={0.6}
             >
